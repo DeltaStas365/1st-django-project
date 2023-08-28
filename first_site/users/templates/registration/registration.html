@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base_generic.html" %}
+{% block content %}
+    {% if ask_logout %}
+        <p>Are you sure, that you want to log out?</p>
+    {% else %}
+        <h1>Join a growing community of creators and gamers from around the world!</h1>
+        <form action="" method="post">
+            {{user_form.as_p}}
+            {% csrf_token %}
+            <p><input type="submit" value="Create Account"></p>
+        </form>
+    {% endif %}
+{% endblock %}
