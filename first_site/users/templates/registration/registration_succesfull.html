@@ -1,5 +1,10 @@
 {% extends "base_generic.html" %}
 {% block content %}
-    <h1>Bonjour! Welcome to our site, {{ new_user.username }}!</h1>
-    <p>Registration succeed! Now you need to <a href="{% url 'login' %}">login</a></p>
+    <h1 class="text-center my-3">Bonjour! Welcome to our site, {{ new_user.username }}!</h1>
+    <div class="col-lg-4 col-md-6 col-10 mx-auto text-center">
+    <p>Registration succeed! Now you need to log in!</p>
+        <a href="{% url 'login' %}">
+            <button class="btn btn-primary rounded-0 btn-lk">Login</button>
+        </a>
+    </div>
 {% endblock %}

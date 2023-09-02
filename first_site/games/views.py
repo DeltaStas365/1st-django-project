@@ -7,7 +7,3 @@ def ex_ussr(request):
 
 
     return render(request, 'games/index.html', {'ex_ussr_countries': country, })
-
-def index(request):
-    return HttpResponse("damn, i dunno what I need to type")
-

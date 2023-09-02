@@ -1,13 +1,13 @@
 {% extends "base_generic.html" %}
 {% block content %}
     {% if form.errors %}
-        <p>Password or username are incorrect!</p>
+        <p class="bg-danger">Password or username are incorrect!</p>
     {% endif %}
     {% if next %}
         {% if user.is_authenticated %}
-            <p>You have logged in already!</p>
+            <div class="text-bg-danger">You have logged in already!</div>
         {% else %}
-            <p>Please log in to enter</p>
+            <div class="text-bg-warning">Please log in to enter</div>
         {% endif %}
     {% endif %}
     <form action="{% url 'login' %}" method="post">
