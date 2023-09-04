@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Profile</title>
-</head>
-<body>
-<h1>Hello, {{ user.username|default:'guest' }}</h1>
-<p>Welcome</p>
-<div>
+{% extends "base_generic.html" %}
+{% block content %}
+
+<div class="col-lg-4 col-nd-6 col-10 mx-auto text-center">
+    <h1>Hello, {{ user.username|default:'guest' }}</h1>
+    <p>Welcome</p>
     {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Log Out</a>
+    <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger">Log Out</button></a>
     {% else %}
-        <a href="{% url 'signup' %}">Sign up</a>
-        <a href="{% url 'login' %}">Log in</a>
+    <div class="d-flex flex-row justify-content-center">
+    <a href="{% url 'signup' %}"><button class="btn btn-success">Sign up</button></a>
+    <a href="{% url 'login' %}"><button class="btn btn-primary" >Log in</button></a>
+    </div>
     {% endif %}
 </div>
-</body>
-</html>
+{% endblock %}
