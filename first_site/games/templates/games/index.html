@@ -1,11 +1,11 @@
 {% extends "base_generic.html" %}
 {% block content %}
-<h1>EX-USSR COUNTRIES</h1>
-{%for country in ex_ussr_countries%}
-<ul>
-    <li>
-        {{country}}
-    </li>
-</ul>
-{%endfor%}
+<h1>Main page</h1>
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+        <h3 class="fw-bolt mb-3 text-dark">{{ games.name }}</h3>
+        <p class="text-danger">{{ games.desc }}</p>
+        <p class="text-bg-warning">{{ games.min_price }}-{{ games.max_price }}</p>
+    </div>
+</div>
 {% endblock %}

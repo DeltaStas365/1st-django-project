@@ -3,5 +3,5 @@ from .views import *
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     # URL для входа
-    path("", ex_ussr),
+    path("", main, name="main"),
 ]

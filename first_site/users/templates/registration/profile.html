@@ -3,8 +3,11 @@
 
 <div class="col-lg-4 col-nd-6 col-10 mx-auto text-center">
     <h1>Hello, {{ user.username|default:'guest' }}</h1>
-    <p>Welcome</p>
+    <p>Welcome, to our site!</p>
     {% if user.is_authenticated %}
+    <h3>Your profile</h3>
+    <p><b>Username:</b> {{ user.username }}</p>
+    <p><b>Email:</b> {{ user.email }}</p>
     <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger">Log Out</button></a>
     {% else %}
     <div class="d-flex flex-row justify-content-center">
