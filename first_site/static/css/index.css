@@ -3,3 +3,10 @@ input {
     border: 1px solid #77B5FE;
     width: 100%;
 }
+.games-cards {
+    gap: 1rem;
+
+}
+.game-card {
+    width: 100%;
+}

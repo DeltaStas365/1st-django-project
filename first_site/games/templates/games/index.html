@@ -1,11 +1,21 @@
 {% extends "base_generic.html" %}
+{% load static %}
 {% block content %}
 <h1>Main page</h1>
 <div class="row">
-    <div class="col-12 col-md-6 col-lg-4">
-        <h3 class="fw-bolt mb-3 text-dark">{{ games.name }}</h3>
-        <p class="text-danger">{{ games.desc }}</p>
-        <p class="text-bg-warning">{{ games.min_price }}-{{ games.max_price }}</p>
-    </div>
+    {% for game in games %}
+    <a href="{% url 'game_page' id=game.pk %}" class="text-decoration-none games-cards">
+        <div class="flex shadow p-4 border mb-3">
+            <div class="col-md-4">
+                <img src="{% static 'img_preview.jpg' %}" width="200px">
+            </div>
+            <div class="col-md-7">
+                <h3 class="fw-bolt mb-3 text-dark">{{ game.name }}</h3>
+                <p class="text-danger">{{ game.desc }}</p>
+                <p class="text-bg-warning">{{ game.min_price }}-{{ game.max_price }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
 </div>
 {% endblock %}

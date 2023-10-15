@@ -15,50 +15,25 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand link-danger" href="{% url 'main' %}">Darknet v2.0</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Compilation
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
-                    </li>
-                </ul>
-                </form>
-            </div>
+    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary bg-dark">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menuItems" aria-controls="menuItems" aria-expanded="false"
+                aria-label="Toggle Navigation">
+            <span class="navbar-toggles-Item"></span>
+        </button>
+        <a class="navbar-brend ps-2" href="/">Darknet 2.0</a>
+        <div class="collapse navbar-collapse" id="menuItems">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown"
+                       type="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Categories</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for i in catergories %}
+                        <a class="dropdown-item" href="/category/{{i.id}}.html">{{i.name}}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
 </header>
@@ -72,5 +47,6 @@
 <!--</ul>-->
 {% block content %}
 {% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+        <img src="{% static 'img_preview.jpg' %}" width="200px">
+    </div>
+    <div class="col-12 col-md-6 col-lg-8">
+        <h3 class="fv-bold mb-6 text-dark">{{ game.name }}</h3>
+        <p class="text-bg-danger">{{ game.desc }}</p>
+        <p class="text-bg-warning">{{ game.min_price }}-{{ game.max_price }}</p>
+    </div>
+</div>
+{% endblock %}
