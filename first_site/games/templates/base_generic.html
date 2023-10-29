@@ -9,13 +9,13 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         body {
-    background-color: #00a5ff;
+    background-color: #5e5b59;
     }
     </style>
 </head>
 <body>
 <header>
-    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary bg-dark">
+    <nav class="navbar fixed-top navbar-expand-md px-4 md-5 bg-dark">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#menuItems" aria-controls="menuItems" aria-expanded="false"
                 aria-label="Toggle Navigation">
@@ -35,18 +35,22 @@
                 </li>
             </ul>
         </div>
+        <div class="ms-auto bg-light">
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="px-3 text-decoration-none">{{ user.username }}</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="px-3 text-decoration-none">Sing in</a>
+            <a href="{% url 'signup' %}" class="px-3 text-decoration-none">Sing up</a>
+            {% endif %}
+        </div>
     </nav>
 </header>
-<!--<ul>-->
-<!--    {% if user.is_authenticated %}-->
-<!--    <li>User: {{user.get_username}}</li>-->
-<!--    <li><a href="{% url 'logout' %}?next={{ request.path }}">Log Out</a></li>-->
-<!--    {% else %}-->
-<!--    <li><a href="{% url 'login' %}?next={{ request.path }}">Log in</a></li>-->
-<!--    {% endif %}-->
-<!--</ul>-->
-{% block content %}
-{% endblock %}
+<main>
+    <div class="page-container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>
 </html>
