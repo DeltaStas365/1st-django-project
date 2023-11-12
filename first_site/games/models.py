@@ -8,9 +8,15 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='avatar', blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.user.username
+
 
 class Category(models.Model):
     name = models.CharField(max_length=16)
+
+    def __str__(self):
+        return self.name
 
 
 class Game(models.Model):
@@ -23,6 +29,8 @@ class Game(models.Model):
     rate = models.DecimalField(default=0, max_digits=2, decimal_places=1)
     categories = models.ManyToManyField(Category)
 
+    def __str__(self):
+        return self.name
 
 class Review(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -32,7 +40,10 @@ class Review(models.Model):
 
 
 class Complilation(models.Model):
-    game = models.ManyToManyField(Game, blank=True, null=True)
+    game = models.ManyToManyField(Game, related_name="Compilation")
     name = models.CharField(max_length=32)
     desc_comp = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='comp_img', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
