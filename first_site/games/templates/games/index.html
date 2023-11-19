@@ -3,6 +3,12 @@
 {% block content %}
 <h1>Main page</h1>
 <div class="row">
+    <div>
+        <form class="form-inline" action="{% url 'main' %}" method="get">
+            <input type="search" placeholder="Search" name="q" aria-label="search">
+            <button class="btn" type="submit">Search</button>
+        </form>
+    </div>
     {% for game in games %}
     <a href="{% url 'game_page' id=game.pk %}" class="text-decoration-none games-cards">
         <div class="flex shadow p-4 border mb-3">

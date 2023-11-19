@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from users.forms import UserRegistrationForm
+from users.forms import UserRegistrationForm, ProfileForm
 
 
 def registration(request):
@@ -19,4 +19,6 @@ def registration(request):
 
 
 def profile(request):
-    return render(request, "registration/profile.html")
+    profile_form = ProfileForm(initial={"username": request.user.username, "email": request.user.email})
+    page_data = {"profile_form": profile_form}
+    return render(request, "registration/profile.html", page_data)

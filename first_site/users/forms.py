@@ -14,3 +14,7 @@ class UserRegistrationForm(forms.ModelForm):
         if cd['password'] != cd['confirm_password']:
             raise forms.ValidationError("Password doesn't match")
         return cd['confirm_password']
+
+class ProfileForm(forms.Form):
+    username = forms.CharField(label="username", widget=forms.TextInput)
+    email = forms.EmailField(label="email", widget=forms.TextInput)
