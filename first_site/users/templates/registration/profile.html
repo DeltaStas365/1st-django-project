@@ -1,19 +1,42 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-<div class="col-lg-4 col-nd-6 col-10 mx-auto text-center">
-    <h1>Hello, {{ user.username|default:'guest' }}</h1>
-    <p>Welcome, to our site!</p>
-    {% if user.is_authenticated %}
-    <h3>Your profile</h3>
-    <p><b>Username:</b> {{ user.username }}</p>
-    <p><b>Email:</b> {{ user.email }}</p>
-    <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger">Log Out</button></a>
-    {% else %}
-    <div class="d-flex flex-row justify-content-center">
-    <a href="{% url 'signup' %}"><button class="btn btn-success">Sign up</button></a>
-    <a href="{% url 'login' %}"><button class="btn btn-primary" >Log in</button></a>
+    <div class="d-flex justify-content-center flex-column align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <h1>Hello, {{ user.username|default:'guest' }}</h1>
+                <p>Welcome, to our site!</p>
+            </div>
+    <div class="d-flex flex-column align-items-center justify-content-start">
+        {% if user.is_authenticated %}
+            <div>
+                <h3>Your profile</h3>
+                <p><b>Username:</b> {{ user.username }}</p>
+                <p><b>Email:</b> {{ user.email }}</p>
+                <a href="{% url 'logout' %}">
+                    <button type="button" class="btn btn-danger">Log Out</button>
+                </a>
+            </div>
+            <div class="d-flex">
+                <form class="review-form" action="">
+                    <div>
+                        {{profile_form.as_p}}
+                        {% csrf_token %}
+                        <p>
+                            <input class="btn btn-primary rounded-0" type="submit" value="Apply changes (don't working)">
+                        </p>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <div class="d-flex flex-row justify-content-center">
+                <a href="{% url 'signup' %}">
+                    <button class="btn btn-success">Sign up</button>
+                </a>
+                <a href="{% url 'login' %}">
+                    <button class="btn btn-primary">Log in</button>
+                </a>
+            </div>
+        {% endif %}
     </div>
-    {% endif %}
-</div>
+    </div>
 {% endblock %}
