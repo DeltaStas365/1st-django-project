@@ -1,13 +1,6 @@
-from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.views.decorators.http import require_http_methods
+from django.shortcuts import render
 
-from .forms import UserRegistrationForm, ProfileForm, ChangePassword
-
-from .services import update_user, change_password
+from users.forms import UserRegistrationForm, ProfileForm
 
 
 def registration(request):
@@ -27,20 +20,5 @@ def registration(request):
 
 def profile(request):
     profile_form = ProfileForm(initial={"username": request.user.username, "email": request.user.email})
-    if request.Method == "POST":
-        password_form = ChangePassword(request.POST, user=request.user)
-        if password_form.is_valid():
-            change_password(request.user, password_form.cleaned_data["new_password"])
-    else:
-        password_form = ChangePassword(user=request.user)
-
-    page_data = {"profile_form": profile_form, "password_form": password_form}
+    page_data = {"profile_form": profile_form}
     return render(request, "registration/profile.html", page_data)
-
-
-@require_http_methods(["POST"])
-def profile_edit(request):
-    profile_form = ProfileForm(request.POST)
-    if profile_form.is_valid():
-        update_user(request.user, profile_form.cleaned_data["username"], profile_form.cleaned_data["email"])
-    return redirect(reverse("profile"))
