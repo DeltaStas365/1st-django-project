@@ -23,7 +23,7 @@ class ProfileForm(forms.Form):
 class ChangePassword(forms.Form):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user")
-        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+        super(ChangePassword, self).__init__(*args, **kwargs)
 
     old_password = forms.CharField(label="Old Password", widget=forms.PasswordInput)
     new_password = forms.CharField(label="New Password", widget=forms.PasswordInput)
