@@ -1,8 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views.decorators.http import require_http_methods
 
+from .forms import CommentForm
 from .models import Game
-from .services import get_all_games, add_categories, get_game, add_compilations
+from .services import get_all_games, add_categories, get_game, add_compilations, get_reviews, create_comment
 
 
 def main(request):
@@ -21,4 +25,15 @@ def main(request):
 
 def game_page(request, id):
     game = get_game(id)
-    return render(request, 'games/game_page.html', {'game': game, })
+    comment_form = CommentForm()
+    reviews = get_reviews(game)
+    page_data = {'game': game, "comment_form": comment_form, "reviews": reviews}
+    return render(request, 'games/game_page.html', page_data)
+
+@login_required()
+@require_http_methods(["POST"])
+def add_comment(request, id):
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        create_comment(request.user, id, form.cleaned_data['comment_text'], form.cleaned_data['rating'])
+    return redirect(reverse("game_page", kwargs={"id": id}))

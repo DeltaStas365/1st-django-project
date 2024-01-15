@@ -10,5 +10,18 @@
         <p class="text-bg-danger">{{ game.desc }}</p>
         <p class="text-bg-warning">{{ game.min_price }}-{{ game.max_price }}</p>
     </div>
+    {% if user.is_authenticated %}
+        <form action="{% url 'add_comment' game.id %}" method="post">
+            <div>
+                {{ comment_form.as_p }}
+                {% csrf_token %}
+                <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+            </div>
+        </form>
+    {% else %}
+        <p class="mb-5">
+            <a href="{% url 'login' %}" class="text-decoration-none">Login to account for comment post</a>
+        </p>
+    {% endif %}
 </div>
 {% endblock %}

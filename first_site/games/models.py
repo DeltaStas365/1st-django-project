@@ -33,8 +33,8 @@ class Game(models.Model):
         return self.name
 
 class Review(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="reviews")
     rate = models.IntegerField()
     text = models.TextField()
 
