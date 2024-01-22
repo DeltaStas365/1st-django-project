@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% load static %}
+{% load filters %}
 {% block content %}
 <div class="row">
     <div class="col-12 col-md-6 col-lg-4">
@@ -23,5 +24,30 @@
             <a href="{% url 'login' %}" class="text-decoration-none">Login to account for comment post</a>
         </p>
     {% endif %}
+    <div>
+        <h4>
+            {{ game.reviews_count }} Reviews
+        </h4>
+        {% for review in reviews %}
+        	<div class="border-bottom my-3">
+                <div class="raw">
+                    <div>
+                        {% if review.author.profile.avatar %}
+                            <img src="{{ review.author.profile.avatar.url }}" width="10%">
+                        {% else %}
+                            <img src="{% static 'img_preview.jpg' %}" width="10%">
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h4>
+                            {{ review.author.username }}
+                        </h4>
+                        <h5>{{ review.rating }}</h5>
+                    </div>
+                </div>
+                <p class="text-break">{{ review.text }}</p>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

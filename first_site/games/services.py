@@ -24,3 +24,8 @@ def get_reviews(game: Game):
 def add_compilations(data):
     compilations = Complilation.objects.all()
     data["compilations"] = compilations
+
+def get_category_with_games(id):
+    category = Category.objects.get(pk=id)
+    games = category.games.all()
+    return category, games

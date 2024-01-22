@@ -27,7 +27,7 @@ class Game(models.Model):
     preview_image = models.ImageField(upload_to='games_previews', blank=True, null=True)
     reviews_count = models.IntegerField(default=0)
     rate = models.DecimalField(default=0, max_digits=2, decimal_places=1)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, related_name='games')
 
     def __str__(self):
         return self.name

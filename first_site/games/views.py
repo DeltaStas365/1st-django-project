@@ -6,7 +6,8 @@ from django.views.decorators.http import require_http_methods
 
 from .forms import CommentForm
 from .models import Game
-from .services import get_all_games, add_categories, get_game, add_compilations, get_reviews, create_comment
+from .services import get_all_games, add_categories, get_game, add_compilations, get_reviews, create_comment, \
+    get_category_with_games
 
 
 def main(request):
@@ -37,3 +38,10 @@ def add_comment(request, id):
     if form.is_valid():
         create_comment(request.user, id, form.cleaned_data['comment_text'], form.cleaned_data['rating'])
     return redirect(reverse("game_page", kwargs={"id": id}))
+
+def category_page(request, id):
+    category, games = get_category_with_games(id)
+    page_data = {"category": category, "games": games}
+    add_categories(page_data)
+    add_compilations(page_data)
+    return render(request, 'games/index.html', page_data)
