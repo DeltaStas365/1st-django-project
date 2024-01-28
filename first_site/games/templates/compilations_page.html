@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+    <h1>All Compilations</h1>
+    <div class="row">
+        {% for compilation in compilations %}
+            <a href="{% url 'compilation_page' id=compilation.pk %}">
+                <div class="shadow p-4 border row align-items-center">
+                    <div>
+                        {% if compilation.image %}
+                            <img src="{{ compilation.image }}">
+                        {% else %}
+                            <img src="{% static 'img_preview.jpg' %}">
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h3>{{ compilation.name }}</h3>
+                        <p>{{ compilation.desc }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -39,7 +39,7 @@ class Review(models.Model):
     text = models.TextField()
 
 
-class Complilation(models.Model):
+class Compilation(models.Model):
     game = models.ManyToManyField(Game, related_name="Compilation")
     name = models.CharField(max_length=32)
     desc_comp = models.TextField(null=True, blank=True)

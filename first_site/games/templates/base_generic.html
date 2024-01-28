@@ -44,7 +44,7 @@
                         <ul class="dropdown-menu">
                             {% for compilation in compilations %}
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{% url 'compilation_page' id=compilation.pk %}">
                                         {{ compilation.name }}
                                     </a>
                                 </li>

@@ -4,6 +4,9 @@
     {% if category %}
     	<h3>Categories</h3>
         <h4>{{ category.name }}</h4>
+    {% elif compilation %}
+        <a href="{% url 'compilations_page' %}">All compilations</a>
+        <p>{{ compilation.name }}</p>
     {% else %}
         <h4>All Games</h4>
     {% endif %}
